@@ -1,0 +1,43 @@
+@host = http://localhost:8080
+
+### GET Root
+GET /
+traceparent: 00-df853039b602c93e641526aaa7d67b8c-339f2b7a83c7d606-01
+
+### POST Peanuts Snoopy
+POST /peanuts
+Content-Type: application/json
+{
+  "name": "Snoopy",
+  "description": "A cute beagle"
+}
+
+### POST Peanuts Woodstock
+POST /peanuts
+Content-Type: application/json
+{
+  "name": "Woodstock",
+  "description": "A cute bird"
+}
+
+### POST Peanuts Charlie Brown
+POST /peanuts
+Content-Type: application/json
+{
+  "name": "Charlie Brown",
+  "description": "Snoopy's owner"
+}
+
+GET /peanuts/1
+
+GET /peanuts/1
+
+GET /peanuts/2
+
+GET /peanuts/2
+
+GET /peanuts/3
+
+GET /peanuts/3
+
+GET /chain
