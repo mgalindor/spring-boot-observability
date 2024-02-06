@@ -119,3 +119,31 @@ services:
     ports:
       - "6379:6379"
     logging: *default-logging
+  
+  # Command 
+  # docker-compose run --rm  k6 run /scripts/k6-script.js
+  k6:
+    image: grafana/k6:0.41.0
+    labels: 
+      type: test
+    deploy:
+      replicas: 0
+    ports:
+      - 16565:6565
+    environment:
+      K6_OUT: influxdb=http://influxdb:8086/k6
+      K6_INFLUXDB_USERNAME: user
+      K6_INFLUXDB_PASSWORD: pa55word
+      K6_INFLUXDB_TAGS_AS_FIELDS: status:string
+    volumes:
+      - ./etc/k6:/scripts
+  influxdb:
+    image: influxdb:1.8
+    labels: 
+      type: monitor
+    ports: 
+      - 18086:8086
+    environment:
+      INFLUXD_DB: k6
+      INFLUXD_ADMIN_USER: user
+      INFLUXD_ADMIN_PASSWORD: pa55word

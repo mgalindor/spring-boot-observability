@@ -75,3 +75,9 @@ datasources:
           url: $${__value.raw}
     readOnly: false
     editable: true
+  - name: InfluxDB
+    type: influxdb
+    access: proxy
+    database: k6
+    uid: influxdb
+    url: http://influxdb:8086
